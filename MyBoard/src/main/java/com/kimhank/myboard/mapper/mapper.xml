@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.kimhank.myboard.mapper.BoardMapper">
+    	<select id="selectBoardList" parameterType="com.kimhank.myboard.service.BoardVO" resultType="com.kimhank.myboard.service.BoardVO">
+    		SELECT BID, BTITLE, BCONTENT, BUSER, BREG_TIME FROM MBOARD ORDER BY BID 
+    	</select>	
+    	
+    	<select id="selectBoard" parameterType="com.kimhank.myboard.service.BoardVO" resultType="com.kimhank.myboard.service.BoardVO">
+	       SELECT BID, BTITLE, BCONTENT, BUSER, BREG_TIME FROM MBOARD 
+	       WHERE BID = #{BID}
+	        ORDER BY BID 
+	    </select>
+	    
+	    <insert id = "insertBoard">
+	    	INSERT INTO MBOARD ( BTITLE, BCONTENT, BUSER, BREG_TIME) VALUES( #{BTITLE} , #{BCONTENT}, #{BUSER} , NOW()  )
+	    </insert>
+	    
+	    <update id ="updateBoard">
+	    	UPDATE MBOARD SET BTITLE = #{BTITLE} , BCONTENT = #{BCONTENT } , BUSER = #{BUSER} , BREG_TIME = NOW()
+	    	WHERE BID = #{BID}
+	    </update>
+	    
+	    <delete id="deleteBoard">
+	    	DELETE FROM MBOARD WHERE BID = #{BID}
+	    </delete>
+	    
+	    
+    </mapper>
